@@ -1,0 +1,136 @@
+Inicio
+
+    Buffer
+    Clientes
+    Dispositivo Disco
+    Reg_Clientes
+        Cedula N[10]
+        Nombre X[20]
+        Dir X[20]
+        Celular N[20]
+        Email X[30]
+    FinBuffer
+
+    Buffer
+    Facturas
+    Dispositivo Disco
+    Reg_Facturas
+        CedulaF N[10]
+        Numfactura N[10]
+        CodProdutor N[10]
+        Cantidad N[5]
+    FinBuffer
+
+    Buffer
+    Productos
+    Dispositivo Disco
+    Reg_Productos
+        Codigo N[10]
+        Descripcion X[100]
+        Precio N[10]
+    FinBuffer
+
+    Buffer
+    Deudas
+    Dispositivo Disco
+    Reg_Deudas
+        CedulaD N[10]
+        NombreD X[20]
+        CelularD N[12]
+        Totaldeudas N[12]
+    FinBuffer
+
+    Buffer
+    Codigo
+    Dispositivo Disco
+    Reg_Codigo
+        NroCod   N[3]
+        contador N[1]
+    FinBuffer
+
+    Abrir Clientes(lectura)
+    Abrir Facturas(lectura)
+    Abrir Produtos(lectura)
+    Abrir Deudas(Escritura)
+    Abrir Codigo(Escritura)
+
+    registrado <- falso
+    Leer Reg_Clientes
+    Leer Reg_Facturas
+
+    MQ (Not(EOF(Clientes)) And Not(EOF(Facturas))) hacer
+        encontrado <- falso
+        Si (Cedula=CedulaF) entonces
+            Si (Not(registrado)) entonces
+                CedulaD <- Cedula
+                NombreD <- Nombre
+                CelularD <- Celular
+                registrado <- verdadero
+            Finsi
+            Cerrar Productos
+            Abrir Productos(lectura)
+            Leer Reg_Productos
+            MQ (Not(EOF(Productos) And Not(encontrado)) hacer
+                Si(CodProdutor = Codigo) entonces
+                    encontrado <- verdadero
+                    totaldeudas <- totaldeudas + cantidad*Precio
+                    Leer Reg_facturas
+                SiNo
+                    Leer Reg_Productos
+                FinSi
+            FinMQ
+        SiNo
+            Si (CedulaF > Cedula) entonces
+                Leer Reg_Clientes
+                Escribir Reg_Deudas
+                totaldeudas <- 0
+                registrado <- falso
+            SiNo
+                Leer Reg_facturas
+            Finsi
+        Finsi
+    FinMQ
+
+    Cerrar Facturas
+    Cerrar Productos
+    Abrir Productos(Lectura)
+    Abrir Factura (Lectura)
+    Leer Reg_Productos
+
+    MQ (Not(EOF(Productos))) hacer
+        Cerrar Facturas
+        Abrir Facturas (lectura)
+        NroCod <- Codigo
+        MQ (EOF(Facturas)) hacer
+            Si(Codigo = CodProductor) entonces
+                con <- con + 1
+                Leer Reg_Facturas
+            SiNo
+                Leer Reg_Facturas
+            FinSi
+        FinMQ
+        contador <- con
+        Escribir Reg_Codigo
+        Leer Reg_Productos
+    FinMQ
+    Cerrar Codigo
+    Abrir Codigo (Lectura)
+    Leer Reg_Codigo 
+    mayor <- 0 
+    MQ (Not(Eof(Codigo))) hacer 
+        Si (contador > mayor) entonces
+            mayor <- contador
+        FinSi
+        Leer Reg_Codigo
+    FinMQ
+    Cerrar Codigo
+    Abrir Codigo (Lectura)
+    Leer Reg_Codigo
+    MQ (Not(Eof(Codigo))) hacer 
+        Si (mayor = Contador) entonces
+           Escibrir "El producto con mayor número de clientes es: ", NroCod
+        SiNo
+            Leer Reg_Codigo
+        Finsi
+    FinMQ
+Fin
