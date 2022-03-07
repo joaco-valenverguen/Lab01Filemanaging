@@ -60,7 +60,7 @@ Inicio
     totaldeudas <- 0
     MQ (Not(EOF(Clientes)) And Not(EOF(Facturas))) hacer
         encontrado <- falso
-        Si (Cedula=CedulaF) entonces
+        Si (Cedula = CedulaF) entonces
             Si (Not(registrado)) entonces
                 CedulaD <- Cedula
                 NombreD <- Nombre
@@ -128,7 +128,7 @@ Inicio
     Leer Reg_Codigo
     MQ (Not(Eof(Codigo))) hacer 
         Si (mayor = Contador) entonces
-           Escibrir "El producto con mayor número de clientes es: ", NroCod
+           Escibrir "El Código del producto con mayor número de clientes es: ", NroCod
         SiNo
             Leer Reg_Codigo
         Finsi
