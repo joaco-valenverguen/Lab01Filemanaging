@@ -24,7 +24,7 @@ void aniadir(){
 		exit(1);
 	}
 	
-	for(int i = 0; i<= 10; i++){
+	for(int i = 0; i<= 10000; i++){
 		archivo << "hola x"<<i<<endl;
 	}
 

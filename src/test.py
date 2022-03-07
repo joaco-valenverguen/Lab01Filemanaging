@@ -1,18 +1,18 @@
-from os import remove
-archivo = open("nombres.txt", "r")
+archivo = open("data.txt", "r")
 
 
-lineas = archivo.readlines()
+data = archivo.readlines()
 
-print (lineas)
-for x in lineas:
-    if("Juan" in x):
-        lineas.remove(x)
+
+print (data)
+for linea in data:
+    if("Melania" in linea):
+        data.remove(linea)
 
 archivo.close()
-print(lineas)
-archivo = open("nombres.txt", "w")
+print(data)
+archivo = open("data.txt", "w")
 
-for x in lineas:
-    archivo.write(x)
+for linea in data:
+    archivo.write(linea)
 archivo.close()
