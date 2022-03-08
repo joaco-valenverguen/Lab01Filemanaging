@@ -32,7 +32,7 @@ void lectura()
         cout << "no se pudo abrir el archivo";
         exit(1);
     }
-    string nombre = "Melania";
+    string nombre = "Jane Chadwick";
     while (!archivo.eof())
     {
         getline(archivo, texto);

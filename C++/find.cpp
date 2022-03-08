@@ -4,20 +4,11 @@
 #include <fstream>
 using namespace std;
 
-void lectura();
-
 int main()
-{
-    lectura();
-    // system("pause");
-    return 0;
-}
-
-void lectura()
 {
     ifstream archivo;
     string texto;
-    string nombre = "Melania";
+    string nombre = "Melania Thornton";
 
     archivo.open("../data.txt", ios::in);
 
@@ -31,9 +22,9 @@ void lectura()
         getline(archivo, texto);
         if (texto.find(nombre) != string::npos)
         {
-
             cout << texto << endl;
         }
     }
     archivo.close();
+    return 0;
 }

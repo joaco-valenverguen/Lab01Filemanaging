@@ -1,5 +1,5 @@
 ## Abrimos en modo solo lectura
-contenido = open("nombres.txt", "r")
+contenido = open("data.txt", "r")
 
 ## Recorremos y mostramos cada línea enumerada
 contador = 1

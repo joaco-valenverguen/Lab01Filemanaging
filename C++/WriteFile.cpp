@@ -1,9 +1,3 @@
-//***********************************************
-//  archiv01.cpp
-//  Demuestra la escritura b�sica en archivo
-//  �1999, Jaime Virgilio G�mez Negrete
-//***********************************************
-
 #include <fstream>
 #include <iostream>
 #include <iomanip>
@@ -11,16 +5,11 @@
 
 using namespace std;
 
-void escribir()
+int main()
 {
     ofstream archivo;
-    int numero;
-    string nombre, frase;
 
-    cout << "digiite el nombre del archivo" << endl;
-    getline(cin, nombre);
-
-    archivo.open(nombre.c_str(), ios::out);
+    archivo.open("file.txt", ios::out);
 
     if (archivo.fail())
     {
@@ -28,19 +17,8 @@ void escribir()
         exit(1);
     }
 
-    cout << "digite el texto del archivo" << endl;
-    getline(cin, frase);
-
-    archivo << frase << endl;
+    archivo << "contenido" << endl;
 
     archivo.close();
-}
-
-int main()
-{
-    escribir();
-
-    system("pause");
-
     return 0;
 }

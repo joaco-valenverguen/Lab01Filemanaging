@@ -6,7 +6,7 @@ int main()
 {
     ofstream file;
 
-    file.open("file.txt", ios::in);
+    file.open("data.txt", ios::in);
 
     return 0;
 }

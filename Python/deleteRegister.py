@@ -6,7 +6,7 @@ data = archivo.readlines()
 
 print (data)
 for linea in data:
-    if("Melania" in linea):
+    if("Jane Chadwick" in linea):
         data.remove(linea)
 
 archivo.close()
