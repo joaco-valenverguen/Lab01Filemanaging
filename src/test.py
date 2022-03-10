@@ -1,10 +1,10 @@
+#Abrimos el archivo
 archivo = open("data.txt", "r")
 
-
+#Leemos el archivo y mostramos los registros en pantalla
 data = archivo.readlines()
-
-
 print (data)
+
 for linea in data:
     if("Melania" in linea):
         data.remove(linea)

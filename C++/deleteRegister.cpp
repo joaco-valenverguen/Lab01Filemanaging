@@ -7,22 +7,11 @@
 #include <stdio.h>
 using namespace std;
 
-void lectura();
-
 int main()
 {
-
-    lectura();
-    remove("../data.txt");
-    rename("temp.txt", "../data.txt");
-
-    return 0;
-}
-
-void lectura()
-{
     ifstream archivo;
-    ofstream archivod("temp.txt", ios::out);
+    ofstream archivod;
+    archivod.open("temp.txt", ios::out);
     string texto, texto2;
 
     archivo.open("../data.txt", ios::in);
@@ -38,10 +27,15 @@ void lectura()
         getline(archivo, texto);
         if (!(texto.find(nombre) != string::npos))
         {
-
             archivod << texto << endl;
         }
     }
 
     archivo.close();
+    archivod.close();
+
+    remove("../data.txt");
+    rename("temp.txt", "../data.txt");
+
+    return 0;
 }
